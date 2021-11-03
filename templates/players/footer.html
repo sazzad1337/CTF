@@ -1,0 +1,20 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<p id="firstname">fjkabnfkjafnbafajkfnanfakf</p>  
+
+
+
+
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'players:scoreboard' %}" style="text-align:right; border-radius: 5px;
+      color:white; margin-right: 10px; margin-left:970px; border-style: solid;
+      border-width: 1px;padding-left: 10px; padding-top:5px; padding-bottom:5px; padding-right: 10px;background-color:#285680;" class="nav-link">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'players:registration' %}" style="text-align:right; border-radius: 5px;
+      color:white; margin-left:1px; border-style: solid;
+      border-width: 1px;padding-left: 10px; padding-top:5px; padding-bottom:5px; padding-right: 10px;background-color:#285680;" class="nav-link">Register</a>
+    </li>
+  </ul>

@@ -1,0 +1,14 @@
+.center{
+    width: 50px;
+    padding:10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+#firstname{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+    padding:10px;
+    color: blueviolet;
+  }
