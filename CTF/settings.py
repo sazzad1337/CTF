@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-bn^nd(o24@#07)hd33f)85#vsxkp8qdch#a8x=)j5+c0pw2xjz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3101-103-147-183-52.ngrok.io','127.0.0.1',]
+ALLOWED_HOSTS = ['3875-182-48-72-23.ngrok.io','127.0.0.1',]
 
 
 # Application definition
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'players',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

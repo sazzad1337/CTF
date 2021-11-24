@@ -8,5 +8,7 @@ urlpatterns = [
     path('scoreboard/', views.scoreboard, name = 'scoreboard'),
     path('registration/', views.register, name = 'registration'),
     path('challenges/', views.challenges, name = 'challenges'),
-    path('f/', views.f, name = ''),
+    path('login/', views.login_page, name = 'l'),
+    path('logout/', views.logout_request, name = 'loggedout'),
+    path('profile/', views.profile, name = 'profile'),
 ]
