@@ -13,6 +13,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib.auth.models import User
 from .models import Profile
+from .models import Challenges
 
 # Create your views here.
 from .models import * #or users_list
@@ -28,9 +29,16 @@ def home(request):
     diction = {'title': "Home"}
     return render(request, 'players/home.html', context = diction)
 
+
+def test(request):
+    cl = Challenges.objects.all()
+    diction = {'title': "Challenges", 'cha': "cl"}
+    return render(request, 'players/test.html', context = diction)
+
 @login_required
 def challenges(request):
-    diction = {'title': "Challenges"}
+    challenges_list = Challenges.objects.values()
+    diction = {'title': "Challenges", 'challenges_list': challenges_list}
     return render(request, 'players/challenges.html', context = diction)
 
 def login_page(request):
@@ -41,6 +49,7 @@ def login_page(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
+                
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
                 return redirect("players:challenges")
@@ -51,8 +60,6 @@ def login_page(request):
     form = AuthenticationForm()
     diction = {'title': "Login", 'form':form}
     return render(request, 'players/login.html', context = diction)
-
-
 
 
 def logout_request(request):
@@ -98,3 +105,16 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
     diction = {'title':"Profile", 'u_form':u_form, 'p_form':p_form}
     return render(request, 'players/profile.html', context = diction)
+
+
+
+def challenge_form(request):
+    form = forms.ChallengsForm()
+    if request.method == "POST":
+        form = forms.ChallengsForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return home(request)
+    diction = {'title': "Challenges", "challenges":form}
+    return render(request, 'author/challenge_form.html', context = diction)
