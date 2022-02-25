@@ -1,0 +1,11 @@
+{% extends "players/base.html" %}
+{% load static %}
+{% block body %}
+<h1>Challenges List</h1>
+<form action="" method="POST">
+    {{ challenges.as_p}}
+    {% csrf_token %}
+    <input type="submit" name="submit" value="Add Challenge">
+</form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "players/base.html" %}
+{% block body %}
+
+<div class="container py-5">
+<h1>LOGOUT</h1>
+<div class="container">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}}">{{message}}</div>
+      {% endfor %}
+    {% endif %}
+    </div>
+<p class="text-center"> <a href="/login"> Login Again?</a></p>
+</div>
+{% endblock %}
