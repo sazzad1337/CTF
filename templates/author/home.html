@@ -2,5 +2,42 @@
 {% load static %}
 {% block body %}
 
+<div class="container">
+    <h1 style="color:#285680;text-align:center;padding-top: 30px;padding-bottom:30px;">Dashboard</h1>
 
+
+    <a class="btn btn-success" href=" {% url 'players:add' %}" role="button"> <i class="bi bi-plus-circle"></i> Add Challenges </a>
+    <a class="btn btn-warning" href=" {% url 'players:notification' %}" role="button"> <i class="bi bi-send"></i> Send Notifications </a>
+
+    <br> 
+    <br>
+
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Challenge Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>  
+          </tr>
+        </thead>
+        <tbody>
+          {% for z in list %}
+          <tr>
+            <td>{{z.c_name}}</td>
+            <td>{{z.c_category}}</td>
+            <td> 
+              <a href="{% url 'players:edit' c_id=z.id %}" class="btn btn-info btn-sm active" role="button" aria-pressed="true"> <i class="bi bi-arrow-repeat"></i> Update</a>
+              <a href="{% url 'players:delete' c_id=z.id %}" class="btn btn-danger btn-sm active" onclick="return confirm('Are you sure you want to delete this?')" role="button" aria-pressed="true"> <i class="bi bi-trash"></i> Delete</a>
+            </td>
+            
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+
+
+
+</div>
+<br>
 {% endblock %}

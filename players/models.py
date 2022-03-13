@@ -27,9 +27,9 @@ class Challenges(models.Model):
 
 
 class scoreboard(models.Model):
-    username = models.CharField(max_length=20)
-    score = models.IntegerField()
-    password = models.CharField(max_length=8)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    solved = models.ForeignKey(Challenges, on_delete=models.CASCADE,null = True)
+    time = models.DateTimeField(auto_now=True)
 
 
 class Profile(models.Model):
@@ -37,3 +37,8 @@ class Profile(models.Model):
     country = models.CharField(default='null', max_length=30)
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+class Notify(models.Model):
+    info = models.CharField(max_length=1000)
+    time = models.DateTimeField(auto_now=True)

@@ -31,8 +31,14 @@ def home(request):
 
 
 def test(request):
-    cl = Challenges.objects.all()
-    diction = {'title': "Challenges", 'cha': "cl"}
+    data = request.GET['flag']
+    
+    cl = Challenges.objects.values()
+    if data not in cl.values():
+        print("lol")
+    else:
+        print("found you")
+    diction = {'title': "Challenges", 'c': cl}
     return render(request, 'players/test.html', context = diction)
 
 @login_required
@@ -52,7 +58,10 @@ def login_page(request):
                 
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("players:challenges")
+                if request.user.is_staff:
+                    return redirect("players:dash")
+                else:
+                    return redirect("players:challenges")
             else:
                 messages.error(request,"Invalid username or password.")
         else:
@@ -115,6 +124,48 @@ def challenge_form(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return home(request)
+            return author_dashboard(request)
     diction = {'title': "Challenges", "challenges":form}
     return render(request, 'author/challenge_form.html', context = diction)
+
+def author_dashboard(request):
+    c_list = Challenges.objects.values()
+    diction = {'title': "Dashboard", 'list':c_list}
+    return render(request, 'author/home.html', context = diction)
+
+
+def challenge_edit(request,c_id):
+    c_info = Challenges.objects.get(pk=c_id)
+    form = forms.ChallengsForm(instance=c_info)
+
+    if request.method =="POST":
+        form = forms.ChallengsForm(request.POST, instance=c_info)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return author_dashboard(request)
+    diction = {'title':"Edit Challenges", 'c_info':form}
+    return render(request, 'author/challenge_info.html', context = diction)
+
+
+def challenge_delete(request,c_id):
+    c_info = Challenges.objects.get(pk=c_id).delete()
+    diction = {'delete_message': "Deleted Sucessfully"}
+    return render (request, 'author/challenge_delete.html', context = diction)
+
+def sending_notification(request):
+    form = forms.NotifyForm()
+    if request.method == "POST":
+        form = forms.NotifyForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return author_dashboard(request)
+    diction = {'title': "Notification", 'noti':form}
+    return render (request, 'author/notifications.html', context = diction)
+
+def view_notification(request):
+    n = Notify.objects.values()
+    diction = {'title': "Challenges", 'n': n}
+    
+    return render(request, 'players/notification.html', context = diction)
