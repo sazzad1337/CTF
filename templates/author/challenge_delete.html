@@ -1,0 +1,10 @@
+{% extends "players/base.html" %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <h1 style="color:red;text-align:center;padding-top: 30px;padding-bottom:30px;"> {{ delete_message }}</h1>
+
+<a class="btn btn-secondary" href=" {% url 'players:dash' %}" role="button"> Return </a>
+</div>
+<br>
+{% endblock %}

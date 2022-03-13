@@ -1,0 +1,21 @@
+{% extends "players/base.html" %}
+{% load static %}
+{% block body %}
+
+
+<div class="container">
+    {% if n %}
+      {% for message in n %}
+      <br>
+      <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        <b> {{message.id}}. </b>{{message.info}} <br> <i style= color:green; >Time: {{message.time}} </i>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "players/base.html" %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+
+<h1 style="color:#285680;text-align:center;padding-top: 30px;padding-bottom:30px;">Edit</h1>
+<form action="" method="POST">
+    {{ c_info.as_p}}
+    {% csrf_token %}
+
+    <input type="submit" value="Update">
+</form>
+<br>
+
+<a class="btn btn-danger" href="" role="button"> Delete </a>
+
+
+</div>
+
+{% endblock %}
