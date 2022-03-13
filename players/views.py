@@ -35,7 +35,7 @@ def test(request):
     
     cl = Challenges.objects.values()
     if data not in cl.values():
-        print("lol")
+        print("data is not found")
     else:
         print("found you")
     diction = {'title': "Challenges", 'c': cl}
