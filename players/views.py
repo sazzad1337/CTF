@@ -115,7 +115,11 @@ def logout_request(request):
     messages.info(request, "You have successfully logged out.") 
     return render(request, 'players/logout.html', context = diction)
 
+def individual_player_score(request,p_id):
+    info = score.objects.filter(solver_name_id=p_id)
 
+    diction = {'title':"Edit Challenges", 'p_info':info}
+    return render(request, 'players/player_score.html', context = diction)
 
 
 def scoreboard(request):
@@ -169,9 +173,14 @@ def challenge_form(request):
     return render(request, 'author/challenge_form.html', context = diction)
 
 def author_dashboard(request):
-    c_list = Challenges.objects.values()
-    diction = {'title': "Dashboard", 'list':c_list}
-    return render(request, 'author/home.html', context = diction)
+    if request.user.is_staff:
+        c_list = Challenges.objects.values()
+        diction = {'title': "Dashboard", 'list':c_list}
+        return render(request, 'author/home.html', context = diction)
+    else:
+        messages.success(request, 'You are not allowed!')
+        return render(request, 'players/404.html',)
+
 
 
 def challenge_edit(request,c_id):
@@ -209,8 +218,6 @@ def view_notification(request):
     diction = {'title': "Challenges", 'n': n}
     
     return render(request, 'players/notification.html', context = diction)
-
-
 
 
 

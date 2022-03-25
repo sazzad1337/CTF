@@ -20,6 +20,7 @@ urlpatterns = [
     path('send_notification/', views.sending_notification, name='notification'),
     path('notifications/', views.view_notification, name='v_notification'),
     path('test/', views.test, name='testing'),
+    path('individual_score/<int:p_id>/', views.individual_player_score, name='i_score'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='players/password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="players/password/password_reset_confirm.html",success_url="/reset/done/"), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='players/password/password_reset_complete.html'), name='password_reset_complete'), 

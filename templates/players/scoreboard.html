@@ -99,7 +99,7 @@ function toggleDataSeries(e) {
       {% for z in scores %}
       <tr>
         <td>{{ forloop.counter }}</td>
-        <td>{{z.solver_name}}</td>
+        <td><a href="{% url 'players:i_score' p_id=z.solver_name_id %}">{{z.solver_name}}</td>
         <td>{{z.total}}</td>
         
       </tr>
