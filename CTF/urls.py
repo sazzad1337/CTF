@@ -20,4 +20,5 @@ from players import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('players.urls')),
+    path("password_reset", views.password_reset_request, name="password_reset"),
 ]

@@ -30,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['3875-182-48-72-23.ngrok.io','127.0.0.1',]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Application definition
 
