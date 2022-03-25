@@ -9,11 +9,12 @@
     {{ c_info.as_p}}
     {% csrf_token %}
 
-    <input type="submit" value="Update">
+    <input class="btn btn-warning" type="submit" value="Update">
 </form>
 <br>
 
-<a class="btn btn-danger" href="" role="button"> Delete </a>
+<a class="btn-grad" href="{% url 'players:dash' %}" role="button"> Back </a>
+<hr>
 
 
 </div>

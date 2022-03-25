@@ -26,10 +26,11 @@ class Challenges(models.Model):
         return str(self.pk)+" "+ self.c_name+ " " + self.c_category
 
 
-class scoreboard(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
-    solved = models.ForeignKey(Challenges, on_delete=models.CASCADE,null = True)
-    time = models.DateTimeField(auto_now=True)
+class score(models.Model):
+    solver_name = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    solved = models.ForeignKey(Challenges, on_delete=models.CASCADE, null=True)
+    time = models.DateTimeField(auto_now=False)
+    points = models.IntegerField(null=True)
 
 
 class Profile(models.Model):

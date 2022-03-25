@@ -19,20 +19,27 @@
       </h5>
     </div>
 
+
+
     <div id="collapse{{ challenge.id }}" class="collapse" aria-labelledby="heading{{ challenge.id }}" data-parent="#accordion">
       <div class="card-body">
         
         {{challenge.c_description}} <br> <br>
         <b style="color:#26004d;">Points - {{challenge.c_point}}</b> <br> <br>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="CTF{flag}" aria-label="flag" aria-describedby="button-addon2">
+          <form method="POST">
+          <div class="input-group mb-3">
+          {% csrf_token %}
+          <input type="text" class="form-control" name="submitted_flag" placeholder="CTF{flag}" aria-label="flag" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit</button>
+            <input type="hidden" id="name" name="x" value="{{ challenge.id }}">
+            <input type="hidden" id="name" name="p" value="{{challenge.c_point}}">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+          </form>
           </div>
         </div>
       </div>
     </div>
-
+  
 {% endfor %}
 
 {% else %}

@@ -1,8 +1,12 @@
+hello
 
-<form action="{% url 'players:testing' %}">
+<hr>
 
-<input type="text" id="name" name="flag" >
 
+<form method="POST" >
+<input type="hidden" id="name" name="ori_flag" value="reverse">
+<input type="text" id="name" name="sub_flag" >
+{% csrf_token %}
 <br>
 <br>
 <br>
@@ -11,5 +15,4 @@
 </form>
 
 
-{{c}}
 
