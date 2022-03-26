@@ -39,19 +39,22 @@ def home(request):
     return render(request, 'players/home.html', context = diction)
 
 
-def test(request):
-    if request.method == 'POST':
-        d = request.POST.get('sub_flag')
-        print(d)
-        c = request.POST.get('ori_flag')
-        print(c)
-        if d == c:
-            print('congo')
-    cl = Challenges.objects.order_by('c_flag')
+def rules(request):
+    r = Rules.objects.values()
+    diction = {'title': "Challenges", 'r': r}
+    return render(request, 'players/rules.html', context = diction)
 
-    diction = {'title': "Challenges", 'c': 's'}
-    return render(request, 'players/test.html', context = diction)
-
+def update_rules(request,id):
+    r_info = Rules.objects.get(pk=id)
+    form = forms.RulesForm(instance=r_info)
+    if request.method =="POST":
+        form = forms.RulesForm(request.POST, instance=r_info)
+        if form.is_valid():
+            form.save(commit=True)
+            messages.success(request,"Rules are now updated.")
+            return author_dashboard(request)
+    diction = {'title': "Update Rules", 'noti':form}
+    return render (request, 'players/update_rules.html', context = diction)
 
 
 @login_required
@@ -208,7 +211,9 @@ def sending_notification(request):
         form = forms.NotifyForm(request.POST)
 
         if form.is_valid():
+            notify = form.cleaned_data.get('info')
             form.save(commit=True)
+            messages.info(request, f"New Notification : {notify}.")
             return author_dashboard(request)
     diction = {'title': "Notification", 'noti':form}
     return render (request, 'author/notifications.html', context = diction)

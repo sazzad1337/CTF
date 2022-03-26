@@ -43,3 +43,7 @@ class Profile(models.Model):
 class Notify(models.Model):
     info = models.CharField(max_length=1000)
     time = models.DateTimeField(auto_now=True)
+
+class Rules(models.Model):
+    details = models.CharField(max_length=10000)
+    time = models.DateTimeField(auto_now=True)

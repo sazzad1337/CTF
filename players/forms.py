@@ -60,3 +60,14 @@ class NotifyForm(forms.ModelForm):
         widgets = {
         'info': forms.TextInput(attrs={'class':'form-control'})
         } 
+
+class RulesForm(forms.ModelForm):
+    class Meta:
+        model = models.Rules
+        fields = ['details']
+        labels  = {
+        'details':'Enter Details'
+        }
+        widgets = {
+        'details': forms.Textarea(attrs={'class':'form-control'})
+        } 

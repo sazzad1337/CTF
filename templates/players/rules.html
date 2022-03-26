@@ -1,0 +1,27 @@
+{% extends "players/base.html" %}
+{% load static %}
+{% block body %}
+{% load crispy_forms_tags %} 
+
+<div class="container">
+    <h1 style="color:#285680;text-align:center;padding-top: 30px;padding-bottom:30px;">Rules & Rgulations</h1>
+
+
+{% for x in r %}
+    {{x.details}}
+    <br>
+    <br>
+    <P style="color:#285680"> Last Updated : {{x.time}}</P>
+{% endfor %}
+
+
+<hr>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
