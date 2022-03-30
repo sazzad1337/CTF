@@ -259,3 +259,7 @@ def password_reset_request(request):
 			messages.error(request, 'An invalid email has been entered.')
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="players/password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+def custom_page_not_found_view(request, exception):
+    return render(request, "players/404.html", {})

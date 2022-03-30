@@ -1,3 +1,2 @@
 Django==3.2.12
 django-crispy-forms==1.14.0
-mysqlclient==2.1.0
