@@ -1,6 +1,7 @@
 # CTF
 This is a simple Capture The Flag (CTF) competition website using Django Framework.
 
+#Demo - https://0xsazzad.pythonanywhere.com/
 
 ### Screenshots
 ![Home](https://i.imgur.com/zUAwcUf.png)
