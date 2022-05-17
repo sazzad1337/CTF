@@ -263,3 +263,6 @@ def password_reset_request(request):
 
 def custom_page_not_found_view(request, exception):
     return render(request, "players/404.html", {})
+
+def test(request):
+    return render(request, "players/toast.html", {})

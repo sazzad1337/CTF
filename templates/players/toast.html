@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+    <link rel="stylesheet"  href="{% static 'css/jquery.toast.css' %}">
+</head>
+<body>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src="{% static 'js/jquery.toast.js' %} "></script>
+<script src="{% static 'js/app.js' %}"></script>  
+<br>
+<script>
+    $.toast({
+
+
+        {% if messages %}
+            {% for message in messages %}
+
+
+
+
+
+        heading: '',
+        text: '{{message}}',
+        loaderBg: '#bb00ff',
+        position: 'bottom-right',
+        stack: 5
+    })
+    {% endfor %}
+      {% endif %}
+      
+</script>
+
+</body>
+</html>

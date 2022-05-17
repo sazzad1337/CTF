@@ -7,6 +7,7 @@ app_name = "players"
 urlpatterns = [
     path('', views.home, name = 'home'),
     path('users/', views.users_list, name = 'users'),
+    path('test/', views.test, name = 'testing'),
     path('scoreboard/', views.scoreboard, name = 'scoreboard'),
     path('registration/', views.register, name = 'registration'),
     path('challenges/', views.challenges, name = 'challenges'),
