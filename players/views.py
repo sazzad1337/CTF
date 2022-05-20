@@ -178,7 +178,14 @@ def challenge_form(request):
 def author_dashboard(request):
     if request.user.is_staff:
         c_list = Challenges.objects.values()
-        diction = {'title': "Dashboard", 'list':c_list}
+        total_challenge_count = 0
+        for n in c_list:
+            total_challenge_count = total_challenge_count+1
+        user = User.objects.values()
+        total_user_count = 0
+        for z in user:
+            total_user_count = total_user_count + 1
+        diction = {'title': "Dashboard", 'v':total_user_count, 'x':total_challenge_count, 'list':c_list}
         return render(request, 'author/home.html', context = diction)
     else:
         messages.success(request, 'You are not allowed!')
