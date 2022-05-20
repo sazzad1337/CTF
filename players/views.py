@@ -165,13 +165,17 @@ def profile(request):
 
 
 def challenge_form(request):
-    form = forms.ChallengsForm()
-    if request.method == "POST":
-        form = forms.ChallengsForm(request.POST)
+    if request.user.is_staff:
+        form = forms.ChallengsForm()
+        if request.method == "POST":
+            form = forms.ChallengsForm(request.POST)
 
-        if form.is_valid():
-            form.save(commit=True)
-            return author_dashboard(request)
+            if form.is_valid():
+                form.save(commit=True)
+                return author_dashboard(request)
+    else:
+        messages.error(request,"You are not allowed!")
+        return redirect("players:home")
     diction = {'title': "Challenges", "challenges":form}
     return render(request, 'author/challenge_form.html', context = diction)
 
@@ -188,7 +192,7 @@ def author_dashboard(request):
         diction = {'title': "Dashboard", 'v':total_user_count, 'x':total_challenge_count, 'list':c_list}
         return render(request, 'author/home.html', context = diction)
     else:
-        messages.success(request, 'You are not allowed!')
+        messages.error(request, 'You are not allowed!')
         return render(request, 'players/404.html',)
 
 
